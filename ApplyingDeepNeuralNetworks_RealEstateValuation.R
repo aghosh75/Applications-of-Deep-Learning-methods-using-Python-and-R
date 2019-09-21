@@ -50,8 +50,9 @@ test <- scale(test, center = m, scale = s)
 # Create Model
 # One hidden layer with 5 neurons. 
 # For activation function we are going to use Rectified Linear Unit(relu) in the hidden layers. 
-# Input layer will 5 neurons as there are 5 features or independent variables.
-# Finally we will have oe neuron for the output layer, Y. 
+# Input layer will have 5 neurons as there are 5 features or independent variables.
+# Finally we will have one neuron for the output layer, Y. 
+
 model <- keras_model_sequential()
 model %>% 
   layer_dense(units = 5, activation = 'relu', input_shape = c(5)) %>%
@@ -105,7 +106,7 @@ plot(testtarget, pred)
 
 #More changes
 # We increase the number of neurons in the first hidden layer to 100.
-# Also add adrop out layers.It helps avoid overfitting. 
+# Also add a drop out layers.It helps avoid overfitting. 
 # It means for the first hidden layer during the training 40% of the neurons are dropped to zero.
 model <- keras_model_sequential()
 model %>%

@@ -9,7 +9,7 @@ View(data)
 hist(data$gre)
 
 # We have to do a min-max normalization to ensure the variables are between 0 and 1 before we apply Neural Networks.
-# We subtract each feaure fro its minimum value an dthen divide by the difference between the maximum and minimum values.
+# We subtract each feature from its minimum value and then divide by the difference between the maximum and minimum values.
 data$gre <- (data$gre - min(data$gre))/(max(data$gre) - min(data$gre))
 data$gpa <- (data$gpa - min(data$gpa))/(max(data$gpa) - min(data$gpa))
 data$rank <- (data$rank - min(data$rank))/(max(data$rank)-min(data$rank)) 
@@ -22,7 +22,7 @@ training <- data[ind==1,]
 testing <- data[ind==2,]
 
 
-# building the Neural Network.
+# Building the Neural Network.
 library(neuralnet)
 set.seed(333)
 # We store the neural network in n.
@@ -37,7 +37,7 @@ plot(n)
 
 
 # Makking Predictions. 
-# for making predictions using neural networks the feature or target variable should be excluded. 
+# For making predictions using neural networks the feature or target variable should be excluded. 
 output <- compute(n, training[,-1])
 head(output$net.result)
 # We can compare the predicted values above with the training data.
@@ -73,7 +73,7 @@ set.seed(333)
 n <- neuralnet(admit~.,data = training, hidden = 5, err.fct = 'ce', linear.output = FALSE)
 plot(n)
 
-# Now we repeat the confusion marix for traiing and testing.
+# Now we repeat the confusion marix for training and testing.
 
 
 #Neural network with 2 hidden layers
@@ -108,7 +108,7 @@ tab2
 1- sum(diag(tab2))/sum(tab2) 
 
 
-#We can also specify which algorithm we want. Deafult is RPROP (resilient backpropagation with weight backtacking)
+#We can also specify which algorithm we want. Default is RPROP (resilient backpropagation with weight backtacking)
 # We can also specify the maximum steps for the algorithm.
 set.seed(333)
 n <- neuralnet(admit~.,data = training, hidden = 5, err.fct = 'ce', linear.output = FALSE, lifesign = 'full', rep = 5, algorithm = "rprop+", stepmax = 100000)
